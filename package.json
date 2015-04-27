@@ -1,0 +1,15 @@
+{
+  "name": "poetry_pal",
+  "version": "0.0.1",
+  "description": "Helper app for writing poetry.",
+  "main": "index.js",
+  "dependencies": {
+    "grunt": "^0.4.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Christina Holland",
+  "license": "ISC"
+}
