@@ -200,10 +200,11 @@ var breakBySyllables = function (word) {
 };
 
 // add word to db
-var addWord = function (word) {
+var addWord = function (word, pron) {
   console.log('storing word: ' + word);
   var newWord = new Word({
-    word: word
+    word: word,
+    syllables: breakBySyllables(pron)
   });
   newWord.save(function (err, newWord) {
     if (err) {
@@ -226,7 +227,7 @@ var storeWords = function (data) {
           console.log(err);
         }
         if (!word) {
-          addWord(wordToAdd);
+          addWord(wordToAdd, wordToAddPron);
         }
       });
     }
