@@ -16,7 +16,10 @@ wordSchema.methods.splitSyllables = function() {
 };
 
 wordSchema.pre('save', function(next) {
-  word.split('')
-};
+
+});
 
 var Word = mongoose.model('Word', wordSchema);
+
+exports.db = db;
+exports.Word = Word;
