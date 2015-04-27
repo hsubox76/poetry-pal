@@ -24,6 +24,37 @@ var VOWELS = {
   "\"Y\"": "u"
 };
 
+var CONSONANTS = {
+  "/b/": "b",
+  "/tS/": "ch",
+  "/d/": "d",
+  "/f/": "f",
+  "/g/": "g",
+  "/h/": "h",
+  "/hw/": "w",
+  "/dZ/": "g",
+  "/k/": "c",
+  "/l/": "l",
+  "/m/": "m",
+  "/N/": "ng",
+  "/n/": "n",
+  "/p/": "p",
+  "/r/": "r",
+  "/S/": "sh",
+  "/s/": "s",
+  "/T/": "th",
+  "/D/": "th",
+  "/t/": "t",
+  "/v/": "v",
+  "/w/": "w",
+  "/j/": "y",
+  "/Z/": "s",
+  "/z/": "z",
+  "\"N\"": "n",
+  "\"R\"": "r",
+  "/x/": "ch"
+};
+
 // add word to db
 var addWord = function (word) {
   console.log('storing word: ' + word);
