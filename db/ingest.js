@@ -1,6 +1,7 @@
 var fs = require('fs');
 var Word = require('./db').Word;
 var _ = require("underscore");
+var byline = require("byline");
 
 var VOWELS = {
   "&": "a",
@@ -194,14 +195,12 @@ var breakBySyllables = function (word) {
     }
     return obj;
   });
-  console.log(results);
   return results;
 
 };
 
 // add word to db
-var addWord = function (word, pron) {
-  console.log('storing word: ' + word);
+var addWord = function (word, pron, count) {
   var newWord = new Word({
     word: word,
     syllables: breakBySyllables(pron)
@@ -209,12 +208,17 @@ var addWord = function (word, pron) {
   newWord.save(function (err, newWord) {
     if (err) {
       console.log(err);
+    } else {
+      if (count % 500 === 0) {
+        console.log('Saved ' + word);
+      }
     }
   });
 };
 
 // go through lines in file and store words
 var storeWords = function (data) {
+  var count = 0;
   var lines = data.split('\r');
   lines.forEach(function (line) {
     var wordToAdd = line.split(" ")[0].split("/")[0];
@@ -222,20 +226,45 @@ var storeWords = function (data) {
     // Don't bother adding words with spaces in them
     if (wordToAdd.indexOf('_') === -1) {
       breakBySyllables(wordToAddPron);
+      // addWord(wordToAdd, wordToAddPron);
+      // count++;
+      // if (count % 500 === 0) {
+      //   console.log(wordToAdd);
+      // }
+
       Word.findOne({word: wordToAdd}, function (err, word) {
         if (err) {
           console.log(err);
         }
         if (!word) {
-          addWord(wordToAdd, wordToAddPron);
+          count++;
+          if (count % 500 === 0) {
+            console.log(wordToAdd);
+          }
+          addWord(wordToAdd, wordToAddPron, count);
         }
       });
+
     }
   });
 };
 
-fs.readFile('db/data/testdict.unc', 'utf8', function (err, data) {
-  if (err) throw err;
-  storeWords(data);
+var count = 0;
+var stream = byline(fs.createReadStream('db/data/mobypron.unc', { encoding: 'utf8' }));
+stream.on('data', function(line) {  var wordToAdd = line.split(" ")[0].split("/")[0];
+  var wordToAddPron = line.split(" ")[1];
+  // Don't bother adding words with spaces in them
+  if (wordToAdd.indexOf('_') === -1) {
+    breakBySyllables(wordToAddPron);
+    count++;
+    if (count % 500 === 0) {
+      console.log('calling addWord on: ' + wordToAdd);
+    }
+    addWord(wordToAdd, wordToAddPron);
+  }
 });
+// fs.readFile('db/data/mobypron.unc', 'utf8', function (err, data) {
+//   if (err) throw err;
+//   storeWords(data);
+// });
 
