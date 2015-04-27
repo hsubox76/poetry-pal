@@ -15,9 +15,9 @@ wordSchema.methods.splitSyllables = function() {
 
 };
 
-wordSchema.pre('save', function(next) {
+// wordSchema.pre('save', function(next) {
 
-});
+// });
 
 var Word = mongoose.model('Word', wordSchema);
 
