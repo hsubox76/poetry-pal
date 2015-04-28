@@ -1,57 +1,26 @@
 'use strict';
 
 var express = require('express');
-var Word = require('../db/db').Word;
+var syllableCount = require('./helpers/syllableCount');
+var rhymeCheck = require('./helpers/rhymeCheck');
 
 var app = express();
 
-var router = express.Router();
-
-var syllableCount = function (line, cb) {
-  var words = line.split(' ');
-  var result = {};
-  var wordsChecked = 0;
-  result.notFound = [];
-  result.count = 0;
-  for (var i = 0; i < words.length; i++) {
-    (function (curWord) {
-      var option1 = curWord;
-      var option2 = curWord;
-      if (curWord.slice(-1) === 's') {
-        option1 = curWord.slice(0,-1);
-      }
-      if (curWord.slice(-2) === 'es') {
-        option2 = curWord.slice(0,-2);
-      }
-      Word.findOne({ $or: [ { word: curWord }, { word: option1 }, { word: option2 } ] }, function (err, word) {
-      //Word.findOne({word: new RegExp('^'+ curWord +'(s|es)?')}, function (err, word) {
-        if (err) {
-          console.log(err);
-        }
-        if (!word) {
-          console.log('Word not found: ' + curWord);
-          result.notFound.push(curWord);
-        } else {
-          console.log(word);
-          result.count += word.syllables.length;
-          if (word !== curWord && curWord.slice(-2) === 'es') {
-            result.count++;
-          }
-        }
-        // if this is the last word checked
-        wordsChecked++;
-        if (wordsChecked === words.length) {
-          cb(result);
-        }
-      });
-    }(words[i]));
-  }
-};
+//var router = express.Router();
 
 app.use(express.static(__dirname + '/../app'));
+
 app.use('/api/count', function (req, res, next) {
   var line = req.query.line;
   syllableCount(line, function (result) {
+    res.send(result);
+  });
+});
+
+app.use('/api/rhyme', function (req, res, next) {
+  var word1 = req.query.word1;
+  var word2 = req.query.word2;
+  rhymeCheck(word1, word2, function (result) {
     res.send(result);
   });
 });
