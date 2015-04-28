@@ -27,6 +27,10 @@ angular
         templateUrl: 'views/haiku.html',
         controller: 'HaikuCtrl'
       })
+      .when('/sonnet', {
+        templateUrl: 'views/sonnet.html',
+        controller: 'SonnetCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

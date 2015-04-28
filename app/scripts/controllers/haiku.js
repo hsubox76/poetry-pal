@@ -11,12 +11,25 @@ angular.module('poetryPalApp')
 
   .controller('HaikuCtrl', function ($scope, HaikuSyllables) {
     $scope.syllablesCorrect = false;
+    $scope.haikuLine1 = 'i like maple syrup';
+    $scope.haikuLine2 = 'on pancakes and on toast';
+    $scope.haikuLine3 = 'but not on my eggs';
     $scope.checkSyllables = function () {
       HaikuSyllables.checkLine($scope.haikuLine1, 5)
-      .then(function () {
-        console.log('checks out');
-        $scope.syllablesCorrect = true;
-        $scope.message = 'Everything checks out!';
+      .then(function (data) {
+        $scope.haikuFeedback1 = data.message;
+      });
+      HaikuSyllables.checkLine($scope.haikuLine2, 7)
+      .then(function (data) {
+        console.log(data.message);
+        $scope.haikuFeedback2 = data.message;
+
+      });
+      HaikuSyllables.checkLine($scope.haikuLine3, 5)
+      .then(function (data) {
+        if (data.message === 'OK!') {
+        }
+        $scope.haikuFeedback3 = data.message;
       });
     };
   })
@@ -29,10 +42,21 @@ angular.module('poetryPalApp')
         params: {line: line, expectedCount: expectedCount}
       })
       .then(function (res) {
-        if (res.data.count === expectedCount) {
-          return true;
+        console.log(line);
+        console.log(res);
+        if (res.data.count === expectedCount && res.data.notFound.length === 0) {
+          return { message: 'OK!' };
         }
-        return false;
+        else if (res.data.count > expectedCount) {
+          return { message: "Too many syllables. (" + res.data.count + "/" + expectedCount +")", count: res.data.count };
+        } else {
+          if (res.data.notFound.length > 0) {
+            var notFoundString = res.data.notFound.join(", ");
+            return { message: "Count indeterminate - could not find words: " + notFoundString, count: res.data.count }
+          } else {
+            return { message: "Too few syllables. (" + res.data.count + "/" + expectedCount +")", count: res.data.count };
+          }
+        }
       });
     };
 

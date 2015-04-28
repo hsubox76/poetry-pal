@@ -3,12 +3,15 @@
     <form>
       <div class="form-group">
         <input type="text" ng-model="haikuLine1" class="form-control" id="haikuLine1" placeholder="Enter a 5 syllable line">
+        <div>{{ haikuFeedback1 }}</div>
       </div>
       <div class="form-group">
         <input type="text" ng-model="haikuLine2" class="form-control" id="haikuLine2" placeholder="Enter a 7 syllable line">
+        <div>{{ haikuFeedback2 }}</div>
       </div>
       <div class="form-group">
         <input type="text" ng-model="haikuLine3" class="form-control" id="haikuLine3" placeholder="Enter a 5 syllable line">
+        <div>{{ haikuFeedback3 }}</div>
       </div>
       <div class="alert alert-success" ng-show="syllablesCorrect">{{ message }}</div>
       <button type="submit" ng-click="checkSyllables()" class="btn btn-default">Check Syllables</button>
