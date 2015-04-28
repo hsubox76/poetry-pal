@@ -52,7 +52,8 @@ var rhymeCheck = function (word1, word2, cb) {
           returnObj.notFound.push(word2);
           cb(returnObj);
         } else {
-          cb(rhymeCompare(word1Found, word2Found));
+          returnObj.match = rhymeCompare(word1Found, word2Found);
+          cb(returnObj);
         }
       });
     }
