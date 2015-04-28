@@ -11,7 +11,7 @@ angular.module('poetryPalApp')
       })
       .then(function (res) {
         if (res.data.count === expectedCount && res.data.notFound.length === 0) {
-          return { message: 'Syllables OK!' };
+          return { message: 'Syllables OK!' , count: res.data.count};
         }
         else if (res.data.count > expectedCount) {
           return { message: "Too many syllables. (" + res.data.count + "/" + expectedCount +")", count: res.data.count };
