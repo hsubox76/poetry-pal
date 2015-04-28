@@ -1,0 +1,12 @@
+<div class="row form-group">
+  <div class="col-md-11">
+    <span class="col-md-1">{{ line.lineNumber }}</span>
+    <div class="col-md-7">
+      <input type="text" ng-model="lineModels[line.lineNumber]" class="form-control" id="haikuLine1" placeholder="Enter a line">
+      <div>{{ line.feedback }}</div>
+    </div>
+    <span class="col-md-4">
+      <span class="label" ng-class="syllableLabels[line.lineNumber]">Syllables ({{ line.syllables }}/{{ line.expectedCount }})</span>
+    </span>
+  </div>
+</div>

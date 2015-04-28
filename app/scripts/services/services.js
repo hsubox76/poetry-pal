@@ -10,19 +10,20 @@ angular.module('poetryPalApp')
         params: {line: line, expectedCount: expectedCount}
       })
       .then(function (res) {
-        if (res.data.count === expectedCount && res.data.notFound.length === 0) {
-          return { message: 'Syllables OK!' , count: res.data.count};
-        }
-        else if (res.data.count > expectedCount) {
-          return { message: "Too many syllables. (" + res.data.count + "/" + expectedCount +")", count: res.data.count };
-        } else {
-          if (res.data.notFound.length > 0) {
-            var notFoundString = res.data.notFound.join(", ");
-            return { message: "Syllable count unknown - could not find words: " + notFoundString, count: res.data.count }
-          } else {
-            return { message: "Too few syllables. (" + res.data.count + "/" + expectedCount +")", count: res.data.count };
-          }
-        }
+        return res.data;
+        // if (res.data.count === expectedCount && res.data.notFound.length === 0) {
+        //   return { message: 'Syllables OK!' , count: res.data.count};
+        // }
+        // else if (res.data.count > expectedCount) {
+        //   return { message: "Too many syllables. (" + res.data.count + "/" + expectedCount +")", count: res.data.count };
+        // } else {
+        //   if (res.data.notFound.length > 0) {
+        //     var notFoundString = res.data.notFound.join(", ");
+        //     return { message: "Syllable count unknown - could not find words: " + notFoundString, count: res.data.count }
+        //   } else {
+        //     return { message: "Too few syllables. (" + res.data.count + "/" + expectedCount +")", count: res.data.count };
+        //   }
+        // }
       });
     };
 

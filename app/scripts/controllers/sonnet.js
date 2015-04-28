@@ -13,9 +13,6 @@ angular.module('poetryPalApp')
 
     $scope.feedbackEmpty = true;
 
-    $scope.sonnetFeedback1 = "";
-    $scope.sonnetFeedback2 = "";
-
     $scope.sonnetData = [];
     $scope.lineModels = {};
     $scope.syllableLabels = {};
@@ -67,12 +64,16 @@ angular.module('poetryPalApp')
           if (text) {
             Syllables.checkLine(text, 10)
             .then(function (data) {
-              $scope.sonnetData[line-1].feedback += (" ..." + data.message);
-              $scope.sonnetData[line-1].syllables = data.count;
-              if (data.count === 10) {
-                $scope.syllableLabels[line] = 'label-success';
-              } else {
+              if (data.notFound.length > 0) {
+                $scope.sonnetData[line-1].feedback += ("Cannot check syllables, unknown word(s): " + data.notFound.join(', '));
                 $scope.syllableLabels[line] = 'label-warning';
+              } else {
+                $scope.sonnetData[line-1].syllables = data.count;
+                if (data.count === 10) {
+                  $scope.syllableLabels[line] = 'label-success';
+                } else {
+                  $scope.syllableLabels[line] = 'label-danger';
+                }
               }
             });
           }
