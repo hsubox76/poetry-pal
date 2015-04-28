@@ -16,29 +16,26 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
  
-## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
-
-## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+## Poetry Pal ##
+  > Poetry Pal is an assistant that helps you check syllable, rhyme, and meter for various poem forms.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > Poetry Pal makes it simple for the beginning poet to get started.  It gives you templates for various forms of poetry (haikus, sonnets, etc.) and checks the lines you type in against the requirements for that poetry form.  It will check that you have the correct number of syllables, that the right words rhyme, and that stress is placed on the appropriate syllables (when required).
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > Beginning poets can get confused about the requirements of different forms of poetry, as it's always harder to learn something through abstract descriptions than through practice.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > Poetry Pal will evaluate and correct an aspiring poet's poem line by line and word by word, giving them detailed feedback on what they're doing wrong (and right) at every step.  This gives them practical and immediate examples of what they need to do to meet poetry rules.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > "If Poetry Pal can reduce the number of terrible first poems written by even 5%, the world will be a vastly better place for our children." - Christina Holland
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > Poetry Pal is free and easy to use.  All you need is a web browser.
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > "I used to think iambic pentameter was the device that Scientologists use in their free tests, but now I'm writing sonnets like a pro!" - a satisfied customer
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > Start now with a simple haiku and see how easy poetry can be.
