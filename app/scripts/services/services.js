@@ -11,14 +11,14 @@ angular.module('poetryPalApp')
       })
       .then(function (res) {
         if (res.data.count === expectedCount && res.data.notFound.length === 0) {
-          return { message: 'OK!' };
+          return { message: 'Syllables OK!' };
         }
         else if (res.data.count > expectedCount) {
           return { message: "Too many syllables. (" + res.data.count + "/" + expectedCount +")", count: res.data.count };
         } else {
           if (res.data.notFound.length > 0) {
             var notFoundString = res.data.notFound.join(", ");
-            return { message: "Count indeterminate - could not find words: " + notFoundString, count: res.data.count }
+            return { message: "Syllable count unknown - could not find words: " + notFoundString, count: res.data.count }
           } else {
             return { message: "Too few syllables. (" + res.data.count + "/" + expectedCount +")", count: res.data.count };
           }
