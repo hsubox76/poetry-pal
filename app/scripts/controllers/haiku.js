@@ -22,8 +22,18 @@ angular.module('poetryPalApp')
     };
   })
 
-  .factory('HaikuSyllables', function () {
+  .factory('HaikuSyllables', function ($http) {
     var checkLine = function (line, expectedCount) {
+
+      $http({
+        url: '/api/count',
+        method: 'GET',
+        params: {line: line, expectedCount: expectedCount}
+      })
+      .then(function (res) {
+        console.log(res.data);
+      });
+
       // count letters, easy check to see everything else is working
       if (line.length === expectedCount) {
         return true;
