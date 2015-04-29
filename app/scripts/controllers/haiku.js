@@ -36,7 +36,7 @@ angular.module('poetryPalApp')
       }
 
       $scope.lineModels[1] = 'i like maple syrup';
-      $scope.lineModels[2] = 'on pancakes and on toast';
+      $scope.lineModels[2] = 'both on pancakes and on toast';
       $scope.lineModels[3] = 'but not on my eggs';
     };
 
